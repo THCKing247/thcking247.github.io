@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Services | Apex Technical Solutions Group LLC</title>
-  <meta name="description" content="Services: websites, custom web applications, automation and integrations, and technical consulting." />
+  <meta name="description" content="Websites, custom web applications, automation & integrations, and consulting." />
 
   <style>
     :root{--bg:#0b1020;--border:rgba(255,255,255,.12);--text:#eef2ff;--muted:rgba(238,242,255,.78);--muted2:rgba(238,242,255,.60);--accent:#7c3aed;--accent2:#2563eb;--radius:18px;--card:rgba(255,255,255,.04);--glass:rgba(0,0,0,.22);}
@@ -21,23 +21,28 @@
       padding:12px 16px;border:1px solid var(--border);border-radius:var(--radius);background:var(--glass);backdrop-filter: blur(10px);}
     .brand-link{display:flex;align-items:center;gap:10px;text-decoration:none}
     .brand-logo{width:38px;height:38px;object-fit:contain;border-radius:12px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.05);padding:5px}
-    .brand-name{font-weight:800;letter-spacing:.2px;line-height:1.1}
+    .brand-name{font-weight:900;letter-spacing:.2px;line-height:1.1}
     .nav{display:flex;gap:10px;flex-wrap:wrap}
-    .nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:999px;border:1px solid transparent;font-size:14px}
+    .nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:999px;border:1px solid transparent;font-size:14px;font-weight:700}
     .nav a:hover{color:var(--text);border-color:var(--border);background:rgba(255,255,255,.06)}
 
     main{margin-top:16px;border:1px solid var(--border);border-radius:var(--radius);background:rgba(0,0,0,.16);padding:28px 18px;}
-    h1{margin:0 0 10px;font-size:38px;letter-spacing:-.6px}
-    p{margin:0 0 14px;max-width:85ch;line-height:1.65;color:var(--muted);font-size:16px}
+    h1{margin:0 0 8px;font-size:38px;letter-spacing:-.6px}
+    .sub{margin:0 0 14px;max-width:90ch;line-height:1.65;color:var(--muted);font-size:16px}
 
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:14px}
     .card{border:1px solid var(--border);border-radius:16px;padding:14px;background:var(--card)}
+    .icon{width:42px;height:42px;display:grid;place-items:center;border-radius:14px;border:1px solid var(--border);
+      background: linear-gradient(135deg, rgba(124,58,237,.18), rgba(37,99,235,.12));margin-bottom:10px;font-size:18px}
     .card h2{margin:0 0 6px;font-size:16px}
     .card p{margin:0 0 10px;color:var(--muted);font-size:14.5px;line-height:1.6}
-    ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.7;font-size:14.5px}
+    ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.7;font-size:14px}
 
-    .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-    .btn{display:inline-block;padding:11px 14px;border-radius:12px;border:1px solid var(--border);text-decoration:none;color:var(--text);background:rgba(255,255,255,.05);font-weight:800;font-size:14px}
+    .stack{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px}
+    .pill{padding:8px 10px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--muted);font-size:13px;font-weight:800}
+
+    .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+    .btn{display:inline-block;padding:11px 14px;border-radius:12px;border:1px solid var(--border);text-decoration:none;color:var(--text);background:rgba(255,255,255,.05);font-weight:900;font-size:14px}
     .btn.primary{border-color:transparent;background:linear-gradient(135deg,var(--accent),var(--accent2))}
     .btn:hover{filter:brightness(1.06)}
 
@@ -63,51 +68,63 @@
 
     <main>
       <h1>Services</h1>
-      <p>
-        Practical technology solutions for businesses that need clean execution, modern design,
-        and systems that scale.
+      <p class="sub">
+        Practical technology solutions for businesses that need clean execution, modern design, and systems that scale.
       </p>
 
       <div class="grid">
         <div class="card">
+          <div class="icon">⚡</div>
           <h2>Custom Web Applications</h2>
           <p>Dashboards, portals, internal tools, and secure logins tailored to your workflow.</p>
           <ul>
-            <li>Admin dashboards & reporting</li>
-            <li>User roles & authentication</li>
-            <li>Workflow tools and data exports</li>
+            <li>Roles & permissions</li>
+            <li>Admin panels & reporting</li>
+            <li>APIs & integrations</li>
           </ul>
         </div>
 
         <div class="card">
+          <div class="icon">🔁</div>
           <h2>Automation & Integrations</h2>
           <p>Connect your tools and automate repetitive tasks using API-driven workflows.</p>
           <ul>
-            <li>API integrations & data sync</li>
-            <li>Notifications & scheduled automations</li>
-            <li>Operational streamlining</li>
+            <li>Webhook and API automation</li>
+            <li>Scheduled workflows & notifications</li>
+            <li>Data sync & operational reporting</li>
           </ul>
         </div>
 
         <div class="card">
+          <div class="icon">🧩</div>
           <h2>Websites & Landing Pages</h2>
           <p>Fast, professional websites built for clarity, trust, and performance.</p>
           <ul>
-            <li>Business websites</li>
-            <li>Landing pages for campaigns</li>
+            <li>Business sites & landing pages</li>
             <li>Performance and usability improvements</li>
+            <li>SEO foundations</li>
           </ul>
         </div>
 
         <div class="card">
+          <div class="icon">🛡️</div>
           <h2>Consulting & Technical Guidance</h2>
-          <p>Get a clear plan and avoid wasted spend with scoped, practical recommendations.</p>
+          <p>Clear roadmaps and practical recommendations so you can ship confidently.</p>
           <ul>
             <li>Scope & roadmap planning</li>
             <li>MVP → v1 strategy</li>
-            <li>Tooling and architecture guidance</li>
+            <li>Architecture and tooling guidance</li>
           </ul>
         </div>
+      </div>
+
+      <div class="stack" aria-label="Tech stack pills">
+        <span class="pill">React</span>
+        <span class="pill">Node.js</span>
+        <span class="pill">APIs</span>
+        <span class="pill">Automation</span>
+        <span class="pill">Cloud Hosting</span>
+        <span class="pill">GitHub</span>
       </div>
 
       <div class="btns">
