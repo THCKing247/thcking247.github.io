@@ -1,75 +1,51 @@
-// ===== Scroll Reveal =====
-(function(){
-  const els = document.querySelectorAll(".reveal");
-  if (els.length === 0) return;
+// Scroll reveal
+const reveals = document.querySelectorAll(".reveal");
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting) e.target.classList.add("in");
+  });
+},{threshold:.15});
+reveals.forEach(r=>io.observe(r));
 
-  if (!("IntersectionObserver" in window)) {
-    els.forEach(el => el.classList.add("in"));
-    return;
-  }
+// Header shrink
+const header = document.querySelector(".site-header");
+window.addEventListener("scroll",()=>{
+  if(window.scrollY > 30) header.classList.add("is-shrunk");
+  else header.classList.remove("is-shrunk");
+},{passive:true});
 
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) e.target.classList.add("in");
-    });
-  }, { threshold: 0.15 });
-
-  els.forEach(el => io.observe(el));
-})();
-
-// ===== Particles (lightweight canvas) =====
-(function(){
-  const canvas = document.getElementById("particles");
-  if (!canvas) return;
-
+// Particles
+const canvas = document.getElementById("particles");
+if(canvas){
   const ctx = canvas.getContext("2d");
-
+  let w,h;
   function resize(){
-    const dpr = window.devicePixelRatio || 1;
-    canvas.width = Math.floor(window.innerWidth * dpr);
-    canvas.height = Math.floor(window.innerHeight * dpr);
-    canvas.style.width = "100%";
-    canvas.style.height = "100%";
-    ctx.setTransform(1,0,0,1,0,0);
+    w=canvas.width=window.innerWidth;
+    h=canvas.height=window.innerHeight;
   }
   resize();
-  window.addEventListener("resize", resize, { passive: true });
+  window.addEventListener("resize",resize);
 
-  const dpr = window.devicePixelRatio || 1;
-  const count = 70;
-
-  const parts = Array.from({length: count}, () => ({
-    x: Math.random(),
-    y: Math.random(),
-    r: 0.7 + Math.random()*1.8,
-    vx: (-0.15 + Math.random()*0.3),
-    vy: (-0.10 + Math.random()*0.2),
-    a: 0.12 + Math.random()*0.25
+  const dots=[...Array(70)].map(()=>({
+    x:Math.random()*w,
+    y:Math.random()*h,
+    r:Math.random()*2+1,
+    vx:(Math.random()-.5)*.4,
+    vy:(Math.random()-.5)*.4
   }));
 
-  function tick(){
-    const w = canvas.width, h = canvas.height;
+  function draw(){
     ctx.clearRect(0,0,w,h);
-
-    for (const p of parts){
-      p.x += p.vx / 1000;
-      p.y += p.vy / 1000;
-
-      if (p.x < -0.02) p.x = 1.02;
-      if (p.x > 1.02) p.x = -0.02;
-      if (p.y < -0.02) p.y = 1.02;
-      if (p.y > 1.02) p.y = -0.02;
-
-      const px = p.x * w, py = p.y * h;
-
+    dots.forEach(d=>{
+      d.x+=d.vx; d.y+=d.vy;
+      if(d.x<0||d.x>w) d.vx*=-1;
+      if(d.y<0||d.y>h) d.vy*=-1;
       ctx.beginPath();
-      ctx.arc(px, py, p.r * dpr, 0, Math.PI*2);
-      ctx.fillStyle = `rgba(255,255,255,${p.a})`;
+      ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
+      ctx.fillStyle="rgba(255,255,255,.35)";
       ctx.fill();
-    }
-
-    requestAnimationFrame(tick);
+    });
+    requestAnimationFrame(draw);
   }
-
-  tick();
-})();
+  draw();
+}
