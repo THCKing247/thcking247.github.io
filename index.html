@@ -5,293 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Apex Technical Solutions Group LLC</title>
   <meta name="description" content="Apex Technical Solutions Group LLC builds modern websites, custom web applications, and automation solutions." />
-
-  <style>
-    :root{
-      --bg:#0b1020;
-      --border:rgba(255,255,255,.12);
-      --text:#eef2ff;
-      --muted:rgba(238,242,255,.78);
-      --muted2:rgba(238,242,255,.60);
-      --accent:#7c3aed;
-      --accent2:#2563eb;
-      --radius:18px;
-      --card:rgba(255,255,255,.04);
-      --glass:rgba(0,0,0,.22);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      color:var(--text);
-      background: var(--bg);
-      min-height:100vh;
-    }
-    a{color:inherit}
-
-    /* ===== Animated Background Layer (blobs + particles) ===== */
-    .bg-animated{
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      overflow: hidden;
-      pointer-events: none;
-    }
-    .bg-animated #particles{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      opacity:.55;
-    }
-    .blob{
-      position:absolute;
-      width: 520px;
-      height: 520px;
-      border-radius: 999px;
-      filter: blur(18px);
-      opacity: .35;
-      mix-blend-mode: screen;
-      transform: translate3d(0,0,0);
-      animation: floaty 16s ease-in-out infinite;
-    }
-    .b1{ left:-120px; top:-140px; background: radial-gradient(circle at 30% 30%, rgba(124,58,237,.95), transparent 60%); }
-    .b2{ right:-160px; top:-120px; background: radial-gradient(circle at 40% 40%, rgba(37,99,235,.95), transparent 60%); animation-duration: 19s; }
-    .b3{ left:20%; bottom:-220px; background: radial-gradient(circle at 50% 40%, rgba(99,102,241,.85), transparent 62%); animation-duration: 22s; }
-
-    @keyframes floaty{
-      0%   { transform: translate3d(0,0,0) scale(1); }
-      35%  { transform: translate3d(40px,22px,0) scale(1.06); }
-      70%  { transform: translate3d(-28px,32px,0) scale(1.02); }
-      100% { transform: translate3d(0,0,0) scale(1); }
-    }
-
-    /* Subtle grid overlay */
-    body::before{
-      content:"";
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      background:
-        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
-      background-size: 54px 54px;
-      opacity: .10;
-      pointer-events:none;
-    }
-
-    /* ===== Layout ===== */
-    .wrap{max-width:1100px;margin:0 auto;padding:20px}
-
-    /* Sticky Header */
-    .site-header{
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      padding:12px 16px;
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      background: var(--glass);
-      backdrop-filter: blur(10px);
-    }
-    .brand-link{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      text-decoration:none;
-    }
-    .brand-logo{
-      width:38px;height:38px;
-      object-fit:contain;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
-      padding:5px;
-    }
-    .brand-name{font-weight:900;letter-spacing:.2px;line-height:1.1}
-    .nav{display:flex;gap:10px;flex-wrap:wrap}
-    .nav a{
-      color:var(--muted);
-      text-decoration:none;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid transparent;
-      font-size:14px;
-      font-weight:700;
-    }
-    .nav a:hover{color:var(--text);border-color:var(--border);background:rgba(255,255,255,.06)}
-
-    /* Main */
-    main{
-      margin-top:16px;
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      background: rgba(0,0,0,.16);
-      padding:30px 18px;
-    }
-
-    /* ===== Typography + components ===== */
-    .kicker{
-      display:inline-block;
-      padding:6px 10px;
-      border:1px solid var(--border);
-      border-radius:999px;
-      color:var(--muted);
-      background: rgba(255,255,255,.03);
-      font-size:13px;
-      font-weight:800;
-    }
-    .hero{position:relative;text-align:center;padding:6px 0 10px}
-    h1{
-      margin:14px 0 10px;
-      font-size:44px;
-      letter-spacing:-.7px;
-      line-height:1.05;
-    }
-    .lead{
-      margin:0 auto 18px;
-      max-width:72ch;
-      line-height:1.65;
-      color:var(--muted);
-      font-size:16.5px;
-    }
-
-    .btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:10px}
-    .btn{
-      display:inline-block;
-      padding:11px 14px;
-      border-radius:12px;
-      border:1px solid var(--border);
-      text-decoration:none;
-      color:var(--text);
-      background: rgba(255,255,255,.05);
-      font-weight:900;
-      font-size:14px;
-    }
-    .btn.primary{border-color:transparent;background: linear-gradient(135deg,var(--accent),var(--accent2))}
-    .btn:hover{filter:brightness(1.06)}
-
-    .hero-metrics{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-      gap:10px;
-      text-align:left;
-    }
-    .metric{
-      border:1px solid var(--border);
-      border-radius:16px;
-      background: rgba(255,255,255,.03);
-      padding:12px;
-    }
-    .metric-title{font-size:12px;color:var(--muted2);letter-spacing:.2px}
-    .metric-value{margin-top:4px;font-weight:900}
-
-    .section{margin-top:26px}
-    .section-head h2{margin:0 0 6px;font-size:22px;letter-spacing:-.2px}
-    .section-head p{margin:0;color:var(--muted);max-width:80ch;line-height:1.6}
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:12px;
-      margin-top:14px;
-      text-align:left;
-    }
-    .card{
-      border:1px solid var(--border);
-      border-radius:16px;
-      padding:14px;
-      background: var(--card);
-    }
-    .icon{
-      width:42px;height:42px;display:grid;place-items:center;
-      border-radius:14px;border:1px solid var(--border);
-      background: linear-gradient(135deg, rgba(124,58,237,.18), rgba(37,99,235,.12));
-      margin-bottom:10px;font-size:18px;
-    }
-    .card h3{margin:0 0 6px;font-size:16px}
-    .card p{margin:0 0 10px;color:var(--muted);font-size:14.5px;line-height:1.6}
-    .card ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.7;font-size:14px}
-
-    .stack{margin-top:12px;display:flex;flex-wrap:wrap;gap:10px}
-    .pill{
-      padding:8px 10px;border-radius:999px;border:1px solid var(--border);
-      background: rgba(255,255,255,.04);
-      color:var(--muted);
-      font-size:13px;
-      font-weight:800;
-    }
-
-    .timeline{margin-top:12px;display:grid;gap:10px}
-    .step{
-      display:flex;gap:12px;align-items:flex-start;
-      border:1px solid var(--border);
-      border-radius:16px;
-      background: rgba(255,255,255,.03);
-      padding:12px;
-    }
-    .step-num{
-      min-width:46px;height:46px;display:grid;place-items:center;
-      border-radius:14px;border:1px solid var(--border);
-      background: rgba(0,0,0,.18);
-      font-weight:900;color: rgba(238,242,255,.86);
-    }
-    .step h3{margin:2px 0 4px;font-size:16px}
-    .step p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.6}
-
-    .cta2{
-      margin-top:22px;
-      border:1px solid var(--border);
-      border-radius:16px;
-      padding:14px;
-      background: linear-gradient(135deg, rgba(124,58,237,.16), rgba(37,99,235,.10));
-      display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
-    }
-    .cta2 h2{margin:0 0 6px;font-size:20px}
-    .cta2 p{margin:0;color:var(--muted);max-width:60ch}
-
-    footer{
-      margin-top:18px;
-      padding-top:14px;
-      border-top:1px solid var(--border);
-      color:rgba(238,242,255,.55);
-      font-size:13px;
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-    footer a{color:rgba(238,242,255,.75)}
-
-    /* ===== Scroll Reveal ===== */
-    .reveal{
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity .7s ease, transform .7s ease;
-      will-change: opacity, transform;
-    }
-    .reveal.in{
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      .blob{animation:none}
-      .reveal{opacity:1;transform:none;transition:none}
-      .bg-animated #particles{display:none}
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/site.css">
 </head>
 
 <body>
-  <!-- Animated background (blobs + particles) -->
   <div class="bg-animated" aria-hidden="true">
     <span class="blob b1"></span>
     <span class="blob b2"></span>
@@ -300,7 +17,7 @@
   </div>
 
   <div class="wrap">
-    <header class="site-header">
+    <header class="site-header reveal">
       <a class="brand-link" href="/">
         <img class="brand-logo" src="/assets/logo.png" alt="Apex Technical Solutions Group LLC logo">
         <span class="brand-name">Apex Technical Solutions Group LLC</span>
@@ -352,9 +69,11 @@
         <div class="grid">
           <div class="card reveal">
             <div class="icon">⚡</div>
-            <h3>Custom Web Applications</h3>
-            <p>Portals, dashboards, internal tools, and secure logins that fit your workflow.</p>
-            <ul>
+            <h3 style="margin:0 0 6px;font-size:16px;">Custom Web Applications</h3>
+            <p style="margin:0 0 10px;color:var(--muted);line-height:1.6;">
+              Portals, dashboards, internal tools, and secure logins that fit your workflow.
+            </p>
+            <ul style="margin:0;padding-left:18px;color:var(--muted);line-height:1.7;">
               <li>Roles & permissions</li>
               <li>Admin panels & analytics</li>
               <li>APIs & integrations</li>
@@ -363,9 +82,11 @@
 
           <div class="card reveal">
             <div class="icon">🔁</div>
-            <h3>Automation & Integrations</h3>
-            <p>Reduce manual work by connecting tools and automating repeatable processes.</p>
-            <ul>
+            <h3 style="margin:0 0 6px;font-size:16px;">Automation & Integrations</h3>
+            <p style="margin:0 0 10px;color:var(--muted);line-height:1.6;">
+              Reduce manual work by connecting tools and automating repeatable processes.
+            </p>
+            <ul style="margin:0;padding-left:18px;color:var(--muted);line-height:1.7;">
               <li>Webhook and API automation</li>
               <li>Notifications & scheduled jobs</li>
               <li>Data sync & reporting</li>
@@ -374,9 +95,11 @@
 
           <div class="card reveal">
             <div class="icon">🧩</div>
-            <h3>Websites & Landing Pages</h3>
-            <p>Fast, modern sites with clean messaging and conversion-focused structure.</p>
-            <ul>
+            <h3 style="margin:0 0 6px;font-size:16px;">Websites & Landing Pages</h3>
+            <p style="margin:0 0 10px;color:var(--muted);line-height:1.6;">
+              Fast, modern sites with clean messaging and conversion-focused structure.
+            </p>
+            <ul style="margin:0;padding-left:18px;color:var(--muted);line-height:1.7;">
               <li>Business sites & funnels</li>
               <li>Performance improvements</li>
               <li>SEO foundations</li>
@@ -385,32 +108,16 @@
 
           <div class="card reveal">
             <div class="icon">🛡️</div>
-            <h3>Technical Consulting</h3>
-            <p>Clear scoping, architecture guidance, and roadmap planning to avoid wasted spend.</p>
-            <ul>
+            <h3 style="margin:0 0 6px;font-size:16px;">Technical Consulting</h3>
+            <p style="margin:0 0 10px;color:var(--muted);line-height:1.6;">
+              Clear scoping, architecture guidance, and roadmap planning to avoid wasted spend.
+            </p>
+            <ul style="margin:0;padding-left:18px;color:var(--muted);line-height:1.7;">
               <li>MVP → v1 planning</li>
               <li>Tooling recommendations</li>
               <li>Risk & complexity reduction</li>
             </ul>
           </div>
-        </div>
-      </section>
-
-      <section class="section reveal">
-        <div class="section-head">
-          <h2>Tech stack</h2>
-          <p>We choose tools that are stable, secure, and easy to maintain.</p>
-        </div>
-
-        <div class="stack">
-          <span class="pill reveal">HTML/CSS</span>
-          <span class="pill reveal">JavaScript</span>
-          <span class="pill reveal">React</span>
-          <span class="pill reveal">Node.js</span>
-          <span class="pill reveal">APIs</span>
-          <span class="pill reveal">Automation</span>
-          <span class="pill reveal">GitHub</span>
-          <span class="pill reveal">Cloud Hosting</span>
         </div>
       </section>
 
@@ -424,29 +131,29 @@
           <div class="step reveal">
             <div class="step-num">01</div>
             <div>
-              <h3>Discovery</h3>
-              <p>Clarify goals, users, requirements, and constraints.</p>
+              <h3 style="margin:2px 0 4px;font-size:16px;">Discovery</h3>
+              <p style="margin:0;color:var(--muted);line-height:1.6;">Clarify goals, users, requirements, and constraints.</p>
             </div>
           </div>
           <div class="step reveal">
             <div class="step-num">02</div>
             <div>
-              <h3>Build</h3>
-              <p>Deliver in milestones with quick feedback loops.</p>
+              <h3 style="margin:2px 0 4px;font-size:16px;">Build</h3>
+              <p style="margin:0;color:var(--muted);line-height:1.6;">Deliver in milestones with quick feedback loops.</p>
             </div>
           </div>
           <div class="step reveal">
             <div class="step-num">03</div>
             <div>
-              <h3>Launch</h3>
-              <p>Go live with performance, security, and usability checks.</p>
+              <h3 style="margin:2px 0 4px;font-size:16px;">Launch</h3>
+              <p style="margin:0;color:var(--muted);line-height:1.6;">Go live with performance, security, and usability checks.</p>
             </div>
           </div>
           <div class="step reveal">
             <div class="step-num">04</div>
             <div>
-              <h3>Support</h3>
-              <p>Updates, enhancements, and continuous improvement.</p>
+              <h3 style="margin:2px 0 4px;font-size:16px;">Support</h3>
+              <p style="margin:0;color:var(--muted);line-height:1.6;">Updates, enhancements, and continuous improvement.</p>
             </div>
           </div>
         </div>
@@ -470,74 +177,6 @@
     </main>
   </div>
 
-  <script>
-    // ===== Scroll Reveal =====
-    (function(){
-      const els = document.querySelectorAll(".reveal");
-      if (!("IntersectionObserver" in window) || els.length === 0) {
-        els.forEach(el => el.classList.add("in"));
-        return;
-      }
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) e.target.classList.add("in");
-        });
-      }, { threshold: 0.15 });
-      els.forEach(el => io.observe(el));
-    })();
-
-    // ===== Particles (lightweight) =====
-    (function(){
-      const canvas = document.getElementById("particles");
-      if (!canvas) return;
-      const ctx = canvas.getContext("2d");
-
-      function resize(){
-        const dpr = window.devicePixelRatio || 1;
-        canvas.width = Math.floor(window.innerWidth * dpr);
-        canvas.height = Math.floor(window.innerHeight * dpr);
-        canvas.style.width = "100%";
-        canvas.style.height = "100%";
-        ctx.setTransform(1,0,0,1,0,0);
-      }
-      resize();
-      window.addEventListener("resize", resize, { passive: true });
-
-      const dpr = window.devicePixelRatio || 1;
-      const count = 70;
-      const parts = Array.from({length: count}, () => ({
-        x: Math.random(),
-        y: Math.random(),
-        r: 0.7 + Math.random()*1.8,
-        vx: (-0.15 + Math.random()*0.3),
-        vy: (-0.10 + Math.random()*0.2),
-        a: 0.12 + Math.random()*0.25
-      }));
-
-      function tick(){
-        const w = canvas.width, h = canvas.height;
-        ctx.clearRect(0,0,w,h);
-
-        for (const p of parts){
-          p.x += p.vx / 1000;
-          p.y += p.vy / 1000;
-
-          if (p.x < -0.02) p.x = 1.02;
-          if (p.x > 1.02) p.x = -0.02;
-          if (p.y < -0.02) p.y = 1.02;
-          if (p.y > 1.02) p.y = -0.02;
-
-          const px = p.x * w, py = p.y * h;
-
-          ctx.beginPath();
-          ctx.arc(px, py, p.r * dpr, 0, Math.PI*2);
-          ctx.fillStyle = `rgba(255,255,255,${p.a})`;
-          ctx.fill();
-        }
-        requestAnimationFrame(tick);
-      }
-      tick();
-    })();
-  </script>
+  <script src="/assets/site.js"></script>
 </body>
 </html>
