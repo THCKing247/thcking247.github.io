@@ -20,21 +20,71 @@
       --glass:rgba(0,0,0,.22);
     }
     *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
       color:var(--text);
-      background:
-        radial-gradient(900px 450px at 20% 10%, rgba(124,58,237,.22), transparent 60%),
-        radial-gradient(900px 450px at 80% 0%, rgba(37,99,235,.18), transparent 55%),
-        linear-gradient(90deg, rgba(124,58,237,.25), rgba(37,99,235,.16)),
-        var(--bg);
+      background: var(--bg);
       min-height:100vh;
     }
     a{color:inherit}
+
+    /* ===== Animated Background Layer (blobs + particles) ===== */
+    .bg-animated{
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .bg-animated #particles{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      opacity:.55;
+    }
+    .blob{
+      position:absolute;
+      width: 520px;
+      height: 520px;
+      border-radius: 999px;
+      filter: blur(18px);
+      opacity: .35;
+      mix-blend-mode: screen;
+      transform: translate3d(0,0,0);
+      animation: floaty 16s ease-in-out infinite;
+    }
+    .b1{ left:-120px; top:-140px; background: radial-gradient(circle at 30% 30%, rgba(124,58,237,.95), transparent 60%); }
+    .b2{ right:-160px; top:-120px; background: radial-gradient(circle at 40% 40%, rgba(37,99,235,.95), transparent 60%); animation-duration: 19s; }
+    .b3{ left:20%; bottom:-220px; background: radial-gradient(circle at 50% 40%, rgba(99,102,241,.85), transparent 62%); animation-duration: 22s; }
+
+    @keyframes floaty{
+      0%   { transform: translate3d(0,0,0) scale(1); }
+      35%  { transform: translate3d(40px,22px,0) scale(1.06); }
+      70%  { transform: translate3d(-28px,32px,0) scale(1.02); }
+      100% { transform: translate3d(0,0,0) scale(1); }
+    }
+
+    /* Subtle grid overlay */
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 54px 54px;
+      opacity: .10;
+      pointer-events:none;
+    }
+
+    /* ===== Layout ===== */
     .wrap{max-width:1100px;margin:0 auto;padding:20px}
 
-    /* Sticky header */
+    /* Sticky Header */
     .site-header{
       position: sticky;
       top: 0;
@@ -44,7 +94,6 @@
       justify-content:space-between;
       gap:12px;
       flex-wrap:wrap;
-
       padding:12px 16px;
       border:1px solid var(--border);
       border-radius:var(--radius);
@@ -87,6 +136,7 @@
       padding:30px 18px;
     }
 
+    /* ===== Typography + components ===== */
     .kicker{
       display:inline-block;
       padding:6px 10px;
@@ -95,19 +145,9 @@
       color:var(--muted);
       background: rgba(255,255,255,.03);
       font-size:13px;
-      font-weight:700;
+      font-weight:800;
     }
     .hero{position:relative;text-align:center;padding:6px 0 10px}
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:-12px -10px 0 -10px;
-      background:
-        radial-gradient(550px 260px at 50% 0%, rgba(124,58,237,.22), transparent 60%),
-        radial-gradient(550px 260px at 70% 10%, rgba(37,99,235,.18), transparent 55%);
-      pointer-events:none;
-      filter: blur(2px);
-    }
     h1{
       margin:14px 0 10px;
       font-size:44px;
@@ -157,7 +197,13 @@
     .section-head h2{margin:0 0 6px;font-size:22px;letter-spacing:-.2px}
     .section-head p{margin:0;color:var(--muted);max-width:80ch;line-height:1.6}
 
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:14px;text-align:left}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:12px;
+      margin-top:14px;
+      text-align:left;
+    }
     .card{
       border:1px solid var(--border);
       border-radius:16px;
@@ -223,10 +269,36 @@
       flex-wrap:wrap;
     }
     footer a{color:rgba(238,242,255,.75)}
+
+    /* ===== Scroll Reveal ===== */
+    .reveal{
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .7s ease, transform .7s ease;
+      will-change: opacity, transform;
+    }
+    .reveal.in{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .blob{animation:none}
+      .reveal{opacity:1;transform:none;transition:none}
+      .bg-animated #particles{display:none}
+    }
   </style>
 </head>
 
 <body>
+  <!-- Animated background (blobs + particles) -->
+  <div class="bg-animated" aria-hidden="true">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <span class="blob b3"></span>
+    <canvas id="particles"></canvas>
+  </div>
+
   <div class="wrap">
     <header class="site-header">
       <a class="brand-link" href="/">
@@ -242,7 +314,7 @@
     </header>
 
     <main>
-      <section class="hero">
+      <section class="hero reveal">
         <div class="kicker">Web • Automation • Custom Apps</div>
         <h1>Ship faster. Automate more. Scale confidently.</h1>
         <p class="lead">
@@ -256,32 +328,32 @@
         </div>
 
         <div class="hero-metrics">
-          <div class="metric">
+          <div class="metric reveal">
             <div class="metric-title">Build Style</div>
             <div class="metric-value">Modern + Maintainable</div>
           </div>
-          <div class="metric">
+          <div class="metric reveal">
             <div class="metric-title">Delivery</div>
             <div class="metric-value">Milestones & Iteration</div>
           </div>
-          <div class="metric">
+          <div class="metric reveal">
             <div class="metric-title">Focus</div>
             <div class="metric-value">Performance & Clarity</div>
           </div>
         </div>
       </section>
 
-      <section class="section">
+      <section class="section reveal">
         <div class="section-head">
           <h2>What we build</h2>
           <p>Production-ready solutions built for speed, reliability, and growth.</p>
         </div>
 
         <div class="grid">
-          <div class="card">
+          <div class="card reveal">
             <div class="icon">⚡</div>
             <h3>Custom Web Applications</h3>
-            <p>Portals, dashboards, internal tools, and secure user logins that fit your workflow.</p>
+            <p>Portals, dashboards, internal tools, and secure logins that fit your workflow.</p>
             <ul>
               <li>Roles & permissions</li>
               <li>Admin panels & analytics</li>
@@ -289,7 +361,7 @@
             </ul>
           </div>
 
-          <div class="card">
+          <div class="card reveal">
             <div class="icon">🔁</div>
             <h3>Automation & Integrations</h3>
             <p>Reduce manual work by connecting tools and automating repeatable processes.</p>
@@ -300,7 +372,7 @@
             </ul>
           </div>
 
-          <div class="card">
+          <div class="card reveal">
             <div class="icon">🧩</div>
             <h3>Websites & Landing Pages</h3>
             <p>Fast, modern sites with clean messaging and conversion-focused structure.</p>
@@ -311,7 +383,7 @@
             </ul>
           </div>
 
-          <div class="card">
+          <div class="card reveal">
             <div class="icon">🛡️</div>
             <h3>Technical Consulting</h3>
             <p>Clear scoping, architecture guidance, and roadmap planning to avoid wasted spend.</p>
@@ -324,54 +396,148 @@
         </div>
       </section>
 
-      <section class="section">
+      <section class="section reveal">
         <div class="section-head">
           <h2>Tech stack</h2>
           <p>We choose tools that are stable, secure, and easy to maintain.</p>
         </div>
 
         <div class="stack">
-          <span class="pill">HTML/CSS</span>
-          <span class="pill">JavaScript</span>
-          <span class="pill">React</span>
-          <span class="pill">Node.js</span>
-          <span class="pill">APIs</span>
-          <span class="pill">Automation</span>
-          <span class="pill">GitHub</span>
-          <span class="pill">Cloud Hosting</span>
+          <span class="pill reveal">HTML/CSS</span>
+          <span class="pill reveal">JavaScript</span>
+          <span class="pill reveal">React</span>
+          <span class="pill reveal">Node.js</span>
+          <span class="pill reveal">APIs</span>
+          <span class="pill reveal">Automation</span>
+          <span class="pill reveal">GitHub</span>
+          <span class="pill reveal">Cloud Hosting</span>
         </div>
       </section>
 
-      <section class="section">
+      <section class="section reveal">
         <div class="section-head">
           <h2>How we work</h2>
           <p>A simple process that keeps delivery predictable.</p>
         </div>
 
         <div class="timeline">
-          <div class="step">
+          <div class="step reveal">
             <div class="step-num">01</div>
             <div>
               <h3>Discovery</h3>
               <p>Clarify goals, users, requirements, and constraints.</p>
             </div>
           </div>
-          <div class="step">
+          <div class="step reveal">
             <div class="step-num">02</div>
             <div>
               <h3>Build</h3>
               <p>Deliver in milestones with quick feedback loops.</p>
             </div>
           </div>
-          <div class="step">
+          <div class="step reveal">
             <div class="step-num">03</div>
             <div>
               <h3>Launch</h3>
               <p>Go live with performance, security, and usability checks.</p>
             </div>
           </div>
-          <div class="step">
+          <div class="step reveal">
             <div class="step-num">04</div>
             <div>
               <h3>Support</h3>
               <p>Updates, enhancements, and continuous improvement.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta2 reveal">
+        <div>
+          <h2>Ready to build?</h2>
+          <p>Send a short message with what you want to build and your timeline.</p>
+        </div>
+        <div class="btns">
+          <a class="btn primary" href="/contact/">Contact</a>
+          <a class="btn" href="mailto:info@apextsgroup.com?subject=Project%20Inquiry">Email Us</a>
+        </div>
+      </section>
+
+      <footer class="reveal">
+        <div>© 2025 Apex Technical Solutions Group LLC</div>
+        <div><a href="mailto:info@apextsgroup.com?subject=Project%20Inquiry">info@apextsgroup.com</a></div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // ===== Scroll Reveal =====
+    (function(){
+      const els = document.querySelectorAll(".reveal");
+      if (!("IntersectionObserver" in window) || els.length === 0) {
+        els.forEach(el => el.classList.add("in"));
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) e.target.classList.add("in");
+        });
+      }, { threshold: 0.15 });
+      els.forEach(el => io.observe(el));
+    })();
+
+    // ===== Particles (lightweight) =====
+    (function(){
+      const canvas = document.getElementById("particles");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+
+      function resize(){
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = Math.floor(window.innerWidth * dpr);
+        canvas.height = Math.floor(window.innerHeight * dpr);
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+        ctx.setTransform(1,0,0,1,0,0);
+      }
+      resize();
+      window.addEventListener("resize", resize, { passive: true });
+
+      const dpr = window.devicePixelRatio || 1;
+      const count = 70;
+      const parts = Array.from({length: count}, () => ({
+        x: Math.random(),
+        y: Math.random(),
+        r: 0.7 + Math.random()*1.8,
+        vx: (-0.15 + Math.random()*0.3),
+        vy: (-0.10 + Math.random()*0.2),
+        a: 0.12 + Math.random()*0.25
+      }));
+
+      function tick(){
+        const w = canvas.width, h = canvas.height;
+        ctx.clearRect(0,0,w,h);
+
+        for (const p of parts){
+          p.x += p.vx / 1000;
+          p.y += p.vy / 1000;
+
+          if (p.x < -0.02) p.x = 1.02;
+          if (p.x > 1.02) p.x = -0.02;
+          if (p.y < -0.02) p.y = 1.02;
+          if (p.y > 1.02) p.y = -0.02;
+
+          const px = p.x * w, py = p.y * h;
+
+          ctx.beginPath();
+          ctx.arc(px, py, p.r * dpr, 0, Math.PI*2);
+          ctx.fillStyle = `rgba(255,255,255,${p.a})`;
+          ctx.fill();
+        }
+        requestAnimationFrame(tick);
+      }
+      tick();
+    })();
+  </script>
+</body>
+</html>
