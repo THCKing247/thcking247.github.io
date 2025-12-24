@@ -75,3 +75,30 @@
 #apex-chat-widget {
   background: #ffffff;
 }
+/* ===== FAILSAFE: keep widget visible and on top ===== */
+#apex-chat-launcher {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50% !important;
+  background: #0f172a !important;
+  color: #ffffff !important;
+  border: none !important;
+  cursor: pointer !important;
+  z-index: 2147483647 !important; /* always on top */
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+#apex-chat-widget {
+  position: fixed !important;
+  bottom: 90px !important;
+  right: 20px !important;
+  width: 340px !important;
+  height: 460px !important;
+  z-index: 2147483647 !important;
+  display: none; /* JS controls open/close */
+}
