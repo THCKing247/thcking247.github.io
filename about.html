@@ -1,60 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About | Apex Technical Solutions Group LLC</title>
   <style>
-    body{margin:0;font-family:Arial, sans-serif;background:#0f172a;color:#e5e7eb;}
-    header{background:#020617;padding:24px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
-    .brand{font-weight:700;font-size:18px;letter-spacing:.3px}
-    nav a{color:#e5e7eb;text-decoration:none;margin-left:14px;font-size:14px;opacity:.9}
-    nav a:hover{opacity:1;text-decoration:underline}
-    main{max-width:960px;margin:0 auto;padding:40px 20px;}
-    h1{margin:0 0 10px;font-size:40px}
-    p{color:#cbd5e1;line-height:1.7;font-size:16px}
-    .panel{background:#0b1220;border:1px solid #1f2a44;border-radius:14px;padding:18px;margin-top:18px;}
-    footer{background:#020617;color:#94a3b8;text-align:center;padding:18px 10px;font-size:13px;margin-top:30px;}
+    :root{
+      --bg:#0b1020; --border:rgba(255,255,255,.12);
+      --text:#eef2ff; --muted:rgba(238,242,255,.78);
+      --accent:#7c3aed; --accent2:#2563eb; --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      color:var(--text);
+      background: linear-gradient(90deg, rgba(124,58,237,.30), rgba(37,99,235,.20)), var(--bg);
+      min-height:100vh;
+    }
+    .wrap{max-width:1000px;margin:0 auto;padding:22px}
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+      padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius);
+      background:rgba(0,0,0,.22);backdrop-filter: blur(8px);
+    }
+    .brand{font-weight:800;letter-spacing:.2px}
+    nav a{
+      color:var(--muted);text-decoration:none;margin-left:12px;
+      padding:8px 10px;border-radius:999px;border:1px solid transparent;font-size:14px;
+    }
+    nav a:hover{color:var(--text);border-color:var(--border);background:rgba(255,255,255,.06)}
+    main{
+      margin-top:18px;border:1px solid var(--border);border-radius:var(--radius);
+      background:rgba(0,0,0,.18);padding:28px 18px;
+    }
+    h1{margin:0 0 10px;font-size:38px;letter-spacing:-.5px}
+    p{margin:0 0 14px;line-height:1.75;color:var(--muted);font-size:16px;max-width:85ch}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:16px}
+    .card{
+      border:1px solid var(--border);border-radius:16px;padding:14px;
+      background:rgba(255,255,255,.04);
+    }
+    .card h2{margin:0 0 6px;font-size:16px}
+    .card p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.65}
+    footer{margin-top:18px;color:rgba(238,242,255,.55);font-size:13px;text-align:center}
+    footer a{color:rgba(238,242,255,.75)}
   </style>
 </head>
 <body>
-  <header>
-    <div class="brand">Apex Technical Solutions Group LLC</div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="services.html">Services</a>
-      <a href="about.html">About</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
+  <div class="wrap">
+    <header>
+      <div class="brand">Apex Technical Solutions Group LLC</div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
 
-  <main>
-    <h1>About</h1>
-    <p>
-      Apex Technical Solutions Group LLC is focused on building modern, reliable technology that helps
-      organizations operate efficiently and scale smoothly.
-    </p>
-
-    <div class="panel">
-      <h2 style="margin-top:0;">Our Approach</h2>
+    <main>
+      <h1>About</h1>
       <p>
-        We prioritize clarity and practical outcomes—starting with simple solutions that can grow over time.
-        Whether you need a professional website, a custom application, or system integrations, we aim to deliver
-        clean work, clear communication, and real business value.
+        Apex Technical Solutions Group LLC builds modern, reliable technology that helps organizations
+        operate efficiently and scale with confidence. We focus on clean execution, clear communication,
+        and solutions that ship.
       </p>
-    </div>
 
-    <div class="panel">
-      <h2 style="margin-top:0;">Future Focus</h2>
-      <p>
-        In addition to client work, we are developing future SaaS offerings focused on automation, reporting,
-        and operational efficiency.
-      </p>
-    </div>
-  </main>
+      <div class="grid">
+        <div class="card">
+          <h2>Our approach</h2>
+          <p>
+            We start with clarity—your goals, timeline, and must-haves. Then we deliver in small milestones
+            so you can review progress quickly and provide feedback early.
+          </p>
+        </div>
+        <div class="card">
+          <h2>What we value</h2>
+          <p>
+            Reliability, simplicity, and measurable outcomes. We aim to reduce friction, improve results,
+            and keep solutions maintainable.
+          </p>
+        </div>
+        <div class="card">
+          <h2>Future focus</h2>
+          <p>
+            In addition to client work, we’re developing SaaS offerings focused on automation, reporting,
+            and operational efficiency.
+          </p>
+        </div>
+      </div>
 
-  <footer>
-    © 2025 Apex Technical Solutions Group LLC
-  </footer>
+      <footer>
+        © 2025 Apex Technical Solutions Group LLC •
+        <a href="mailto:info@apextsgroup.com?subject=Project%20Inquiry">info@apextsgroup.com</a>
+      </footer>
+    </main>
+  </div>
 </body>
 </html>
