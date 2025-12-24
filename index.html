@@ -48,7 +48,6 @@
       padding:12px 16px;
       border:1px solid var(--border);
       border-radius:var(--radius);
-
       background: var(--glass);
       backdrop-filter: blur(10px);
     }
@@ -66,16 +65,8 @@
       background: rgba(255,255,255,.05);
       padding:5px;
     }
-    .brand-name{
-      font-weight:800;
-      letter-spacing:.2px;
-      line-height:1.1;
-    }
-    .nav{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
+    .brand-name{font-weight:900;letter-spacing:.2px;line-height:1.1}
+    .nav{display:flex;gap:10px;flex-wrap:wrap}
     .nav a{
       color:var(--muted);
       text-decoration:none;
@@ -83,25 +74,19 @@
       border-radius:999px;
       border:1px solid transparent;
       font-size:14px;
+      font-weight:700;
     }
-    .nav a:hover{
-      color:var(--text);
-      border-color:var(--border);
-      background: rgba(255,255,255,.06);
-    }
+    .nav a:hover{color:var(--text);border-color:var(--border);background:rgba(255,255,255,.06)}
 
-    /* Content */
+    /* Main */
     main{
       margin-top:16px;
       border:1px solid var(--border);
       border-radius:var(--radius);
       background: rgba(0,0,0,.16);
-      padding:34px 18px;
+      padding:30px 18px;
     }
-    .hero{
-      text-align:center;
-      padding:6px 0 12px;
-    }
+
     .kicker{
       display:inline-block;
       padding:6px 10px;
@@ -110,6 +95,18 @@
       color:var(--muted);
       background: rgba(255,255,255,.03);
       font-size:13px;
+      font-weight:700;
+    }
+    .hero{position:relative;text-align:center;padding:6px 0 10px}
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-12px -10px 0 -10px;
+      background:
+        radial-gradient(550px 260px at 50% 0%, rgba(124,58,237,.22), transparent 60%),
+        radial-gradient(550px 260px at 70% 10%, rgba(37,99,235,.18), transparent 55%);
+      pointer-events:none;
+      filter: blur(2px);
     }
     h1{
       margin:14px 0 10px;
@@ -124,13 +121,8 @@
       color:var(--muted);
       font-size:16.5px;
     }
-    .btns{
-      display:flex;
-      gap:10px;
-      justify-content:center;
-      flex-wrap:wrap;
-      margin-top:10px;
-    }
+
+    .btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:10px}
     .btn{
       display:inline-block;
       padding:11px 14px;
@@ -139,45 +131,85 @@
       text-decoration:none;
       color:var(--text);
       background: rgba(255,255,255,.05);
-      font-weight:800;
+      font-weight:900;
       font-size:14px;
     }
-    .btn.primary{
-      border-color:transparent;
-      background: linear-gradient(135deg,var(--accent),var(--accent2));
-    }
+    .btn.primary{border-color:transparent;background: linear-gradient(135deg,var(--accent),var(--accent2))}
     .btn:hover{filter:brightness(1.06)}
 
-    .grid{
+    .hero-metrics{
+      margin-top:18px;
       display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:12px;
-      margin-top:22px;
+      grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+      gap:10px;
       text-align:left;
     }
+    .metric{
+      border:1px solid var(--border);
+      border-radius:16px;
+      background: rgba(255,255,255,.03);
+      padding:12px;
+    }
+    .metric-title{font-size:12px;color:var(--muted2);letter-spacing:.2px}
+    .metric-value{margin-top:4px;font-weight:900}
+
+    .section{margin-top:26px}
+    .section-head h2{margin:0 0 6px;font-size:22px;letter-spacing:-.2px}
+    .section-head p{margin:0;color:var(--muted);max-width:80ch;line-height:1.6}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:14px;text-align:left}
     .card{
       border:1px solid var(--border);
       border-radius:16px;
       padding:14px;
       background: var(--card);
     }
+    .icon{
+      width:42px;height:42px;display:grid;place-items:center;
+      border-radius:14px;border:1px solid var(--border);
+      background: linear-gradient(135deg, rgba(124,58,237,.18), rgba(37,99,235,.12));
+      margin-bottom:10px;font-size:18px;
+    }
     .card h3{margin:0 0 6px;font-size:16px}
-    .card p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.6}
+    .card p{margin:0 0 10px;color:var(--muted);font-size:14.5px;line-height:1.6}
+    .card ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.7;font-size:14px}
 
-    .cta{
-      margin-top:18px;
+    .stack{margin-top:12px;display:flex;flex-wrap:wrap;gap:10px}
+    .pill{
+      padding:8px 10px;border-radius:999px;border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color:var(--muted);
+      font-size:13px;
+      font-weight:800;
+    }
+
+    .timeline{margin-top:12px;display:grid;gap:10px}
+    .step{
+      display:flex;gap:12px;align-items:flex-start;
+      border:1px solid var(--border);
+      border-radius:16px;
+      background: rgba(255,255,255,.03);
+      padding:12px;
+    }
+    .step-num{
+      min-width:46px;height:46px;display:grid;place-items:center;
+      border-radius:14px;border:1px solid var(--border);
+      background: rgba(0,0,0,.18);
+      font-weight:900;color: rgba(238,242,255,.86);
+    }
+    .step h3{margin:2px 0 4px;font-size:16px}
+    .step p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.6}
+
+    .cta2{
+      margin-top:22px;
       border:1px solid var(--border);
       border-radius:16px;
       padding:14px;
-      background: linear-gradient(135deg, rgba(124,58,237,.16), rgba(37,99,235,.12));
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
+      background: linear-gradient(135deg, rgba(124,58,237,.16), rgba(37,99,235,.10));
+      display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
     }
-    .cta strong{font-size:15.5px}
-    .cta span{display:block;color:var(--muted2);font-size:13.5px;margin-top:4px}
+    .cta2 h2{margin:0 0 6px;font-size:20px}
+    .cta2 p{margin:0;color:var(--muted);max-width:60ch}
 
     footer{
       margin-top:18px;
@@ -201,7 +233,6 @@
         <img class="brand-logo" src="/assets/logo.png" alt="Apex Technical Solutions Group LLC logo">
         <span class="brand-name">Apex Technical Solutions Group LLC</span>
       </a>
-
       <nav class="nav">
         <a href="/">Home</a>
         <a href="/services/">Services</a>
@@ -213,10 +244,9 @@
     <main>
       <section class="hero">
         <div class="kicker">Web • Automation • Custom Apps</div>
-        <h1>Modern tech solutions that scale.</h1>
+        <h1>Ship faster. Automate more. Scale confidently.</h1>
         <p class="lead">
-          We build fast, professional websites, workflow automation, and custom web applications designed
-          to reduce friction and help your business grow.
+          We build modern websites, workflow automation, and custom web apps with clean execution and production-ready delivery.
         </p>
 
         <div class="btns">
@@ -224,40 +254,124 @@
           <a class="btn" href="/services/">View Services</a>
           <a class="btn" href="mailto:info@apextsgroup.com?subject=Project%20Inquiry">Email Us</a>
         </div>
-      </section>
 
-      <section class="grid" aria-label="Services overview">
-        <div class="card">
-          <h3>Custom Web Applications</h3>
-          <p>Dashboards, portals, internal tools, and secure logins tailored to your workflow.</p>
-        </div>
-        <div class="card">
-          <h3>Automation & Integrations</h3>
-          <p>Connect systems, automate tasks, and streamline operations using APIs.</p>
-        </div>
-        <div class="card">
-          <h3>Websites & Landing Pages</h3>
-          <p>Clear messaging, modern design, and performance-focused delivery.</p>
-        </div>
-        <div class="card">
-          <h3>SaaS (Coming Soon)</h3>
-          <p>Future products focused on efficiency, reporting, and operational improvement.</p>
+        <div class="hero-metrics">
+          <div class="metric">
+            <div class="metric-title">Build Style</div>
+            <div class="metric-value">Modern + Maintainable</div>
+          </div>
+          <div class="metric">
+            <div class="metric-title">Delivery</div>
+            <div class="metric-value">Milestones & Iteration</div>
+          </div>
+          <div class="metric">
+            <div class="metric-title">Focus</div>
+            <div class="metric-value">Performance & Clarity</div>
+          </div>
         </div>
       </section>
 
-      <div class="cta">
-        <div>
-          <strong>Have an idea you want to build?</strong>
-          <span>Send a short description and timeline — we’ll reply with next steps.</span>
+      <section class="section">
+        <div class="section-head">
+          <h2>What we build</h2>
+          <p>Production-ready solutions built for speed, reliability, and growth.</p>
         </div>
-        <a class="btn primary" href="/contact/">Contact</a>
-      </div>
 
-      <footer>
-        <div>© 2025 Apex Technical Solutions Group LLC</div>
-        <div><a href="mailto:info@apextsgroup.com?subject=Project%20Inquiry">info@apextsgroup.com</a></div>
-      </footer>
-    </main>
-  </div>
-</body>
-</html>
+        <div class="grid">
+          <div class="card">
+            <div class="icon">⚡</div>
+            <h3>Custom Web Applications</h3>
+            <p>Portals, dashboards, internal tools, and secure user logins that fit your workflow.</p>
+            <ul>
+              <li>Roles & permissions</li>
+              <li>Admin panels & analytics</li>
+              <li>APIs & integrations</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="icon">🔁</div>
+            <h3>Automation & Integrations</h3>
+            <p>Reduce manual work by connecting tools and automating repeatable processes.</p>
+            <ul>
+              <li>Webhook and API automation</li>
+              <li>Notifications & scheduled jobs</li>
+              <li>Data sync & reporting</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="icon">🧩</div>
+            <h3>Websites & Landing Pages</h3>
+            <p>Fast, modern sites with clean messaging and conversion-focused structure.</p>
+            <ul>
+              <li>Business sites & funnels</li>
+              <li>Performance improvements</li>
+              <li>SEO foundations</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="icon">🛡️</div>
+            <h3>Technical Consulting</h3>
+            <p>Clear scoping, architecture guidance, and roadmap planning to avoid wasted spend.</p>
+            <ul>
+              <li>MVP → v1 planning</li>
+              <li>Tooling recommendations</li>
+              <li>Risk & complexity reduction</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>Tech stack</h2>
+          <p>We choose tools that are stable, secure, and easy to maintain.</p>
+        </div>
+
+        <div class="stack">
+          <span class="pill">HTML/CSS</span>
+          <span class="pill">JavaScript</span>
+          <span class="pill">React</span>
+          <span class="pill">Node.js</span>
+          <span class="pill">APIs</span>
+          <span class="pill">Automation</span>
+          <span class="pill">GitHub</span>
+          <span class="pill">Cloud Hosting</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>How we work</h2>
+          <p>A simple process that keeps delivery predictable.</p>
+        </div>
+
+        <div class="timeline">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div>
+              <h3>Discovery</h3>
+              <p>Clarify goals, users, requirements, and constraints.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div>
+              <h3>Build</h3>
+              <p>Deliver in milestones with quick feedback loops.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div>
+              <h3>Launch</h3>
+              <p>Go live with performance, security, and usability checks.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">04</div>
+            <div>
+              <h3>Support</h3>
+              <p>Updates, enhancements, and continuous improvement.</p>
