@@ -1,1 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Services | Apex Technical Solutions Group LLC</title>
+  <meta name="description" content="Services: websites, custom web applications, automation and integrations, and technical consulting." />
 
+  <style>
+    :root{--bg:#0b1020;--border:rgba(255,255,255,.12);--text:#eef2ff;--muted:rgba(238,242,255,.78);--muted2:rgba(238,242,255,.60);--accent:#7c3aed;--accent2:#2563eb;--radius:18px;--card:rgba(255,255,255,.04);--glass:rgba(0,0,0,.22);}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--text);
+      background:radial-gradient(900px 450px at 20% 10%, rgba(124,58,237,.22), transparent 60%),
+                 radial-gradient(900px 450px at 80% 0%, rgba(37,99,235,.18), transparent 55%),
+                 linear-gradient(90deg, rgba(124,58,237,.25), rgba(37,99,235,.16)), var(--bg);
+      min-height:100vh;}
+    a{color:inherit}
+    .wrap{max-width:1100px;margin:0 auto;padding:20px}
+
+    .site-header{position:sticky;top:0;z-index:999;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+      padding:12px 16px;border:1px solid var(--border);border-radius:var(--radius);background:var(--glass);backdrop-filter: blur(10px);}
+    .brand-link{display:flex;align-items:center;gap:10px;text-decoration:none}
+    .brand-logo{width:38px;height:38px;object-fit:contain;border-radius:12px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.05);padding:5px}
+    .brand-name{font-weight:800;letter-spacing:.2px;line-height:1.1}
+    .nav{display:flex;gap:10px;flex-wrap:wrap}
+    .nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:999px;border:1px solid transparent;font-size:14px}
+    .nav a:hover{color:var(--text);border-color:var(--border);background:rgba(255,255,255,.06)}
+
+    main{margin-top:16px;border:1px solid var(--border);border-radius:var(--radius);background:rgba(0,0,0,.16);padding:28px 18px;}
+    h1{margin:0 0 10px;font-size:38px;letter-spacing:-.6px}
+    p{margin:0 0 14px;max-width:85ch;line-height:1.65;color:var(--muted);font-size:16px}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:14px}
+    .card{border:1px solid var(--border);border-radius:16px;padding:14px;background:var(--card)}
+    .card h2{margin:0 0 6px;font-size:16px}
+    .card p{margin:0 0 10px;color:var(--muted);font-size:14.5px;line-height:1.6}
+    ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.7;font-size:14.5px}
+
+    .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .btn{display:inline-block;padding:11px 14px;border-radius:12px;border:1px solid var(--border);text-decoration:none;color:var(--text);background:rgba(255,255,255,.05);font-weight:800;font-size:14px}
+    .btn.primary{border-color:transparent;background:linear-gradient(135deg,var(--accent),var(--accent2))}
+    .btn:hover{filter:brightness(1.06)}
+
+    footer{margin-top:18px;padding-top:14px;border-top:1px solid var(--border);color:rgba(238,242,255,.55);font-size:13px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    footer a{color:rgba(238,242,255,.75)}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand-link" href="/">
+        <img class="brand-logo" src="/assets/logo.png" alt="Apex Technical Solutions Group LLC logo">
+        <span class="brand-name">Apex Technical Solutions Group LLC</span>
+      </a>
+      <nav class="nav">
+        <a href="/">Home</a>
+        <a href="/services/">Services</a>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <h1>Services</h1>
+      <p>
+        Practical technology solutions for businesses that need clean execution, modern design,
+        and systems that scale.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h2>Custom Web Applications</h2>
+          <p>Dashboards, portals, internal tools, and secure logins tailored to your workflow.</p>
+          <ul>
+            <li>Admin dashboards & reporting</li>
+            <li>User roles & authentication</li>
+            <li>Workflow tools and data exports</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>Automation & Integrations</h2>
+          <p>Connect your tools and automate repetitive tasks using API-driven workflows.</p>
+          <ul>
+            <li>API integrations & data sync</li>
+            <li>Notifications & scheduled automations</li>
+            <li>Operational streamlining</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>Websites & Landing Pages</h2>
+          <p>Fast, professional websites built for clarity, trust, and performance.</p>
+          <ul>
+            <li>Business websites</li>
+            <li>Landing pages for campaigns</li>
+            <li>Performance and usability improvements</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>Consulting & Technical Guidance</h2>
+          <p>Get a clear plan and avoid wasted spend with scoped, practical recommendations.</p>
+          <ul>
+            <li>Scope & roadmap planning</li>
+            <li>MVP → v1 strategy</li>
+            <li>Tooling and architecture guidance</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="btns">
+        <a class="btn primary" href="/contact/">Request a Quote</a>
+        <a class="btn" href="mailto:info@apextsgroup.com?subject=Project%20Inquiry">Email info@apextsgroup.com</a>
+      </div>
+
+      <footer>
+        <div>© 2025 Apex Technical Solutions Group LLC</div>
+        <div><a href="mailto:info@apextsgroup.com?subject=Project%20Inquiry">info@apextsgroup.com</a></div>
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
