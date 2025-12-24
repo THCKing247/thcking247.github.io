@@ -5,18 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Message Sent | Apex Technical Solutions Group LLC</title>
   <meta name="robots" content="noindex" />
+
   <style>
-    :root{--bg:#0b1020;--border:rgba(255,255,255,.12);--text:#eef2ff;--muted:rgba(238,242,255,.78);--accent:#7c3aed;--accent2:#2563eb;--radius:18px;--glass:rgba(0,0,0,.22);}
+    :root{
+      --bg:#0b1020;--border:rgba(255,255,255,.12);--text:#eef2ff;
+      --muted:rgba(238,242,255,.78);--accent:#7c3aed;--accent2:#2563eb;
+      --radius:18px;--glass:rgba(0,0,0,.22);
+    }
     *{box-sizing:border-box}
+    html,body{height:100%}
     body{
       margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--text);
-      background:
-        radial-gradient(900px 450px at 20% 10%, rgba(124,58,237,.22), transparent 60%),
-        radial-gradient(900px 450px at 80% 0%, rgba(37,99,235,.18), transparent 55%),
-        linear-gradient(90deg, rgba(124,58,237,.25), rgba(37,99,235,.16)),
-        var(--bg);
+      background:var(--bg);
       min-height:100vh;display:grid;place-items:center;padding:20px;
     }
+
+    .bg-animated{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+    .bg-animated #particles{position:absolute;inset:0;width:100%;height:100%;opacity:.55}
+    .blob{position:absolute;width:520px;height:520px;border-radius:999px;filter:blur(18px);opacity:.35;mix-blend-mode:screen;animation:floaty 16s ease-in-out infinite}
+    .b1{left:-120px;top:-140px;background:radial-gradient(circle at 30% 30%, rgba(124,58,237,.95), transparent 60%)}
+    .b2{right:-160px;top:-120px;background:radial-gradient(circle at 40% 40%, rgba(37,99,235,.95), transparent 60%);animation-duration:19s}
+    .b3{left:20%;bottom:-220px;background:radial-gradient(circle at 50% 40%, rgba(99,102,241,.85), transparent 62%);animation-duration:22s}
+    @keyframes floaty{0%{transform:translate3d(0,0,0) scale(1)}35%{transform:translate3d(40px,22px,0) scale(1.06)}70%{transform:translate3d(-28px,32px,0) scale(1.02)}100%{transform:translate3d(0,0,0) scale(1)}}
+
+    body::before{
+      content:"";position:fixed;inset:0;z-index:-2;
+      background:linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+               linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size:54px 54px;opacity:.10;pointer-events:none;
+    }
+
     .card{
       max-width:760px;width:100%;
       border:1px solid var(--border);
@@ -34,11 +52,70 @@
     }
   </style>
 </head>
+
 <body>
+  <div class="bg-animated" aria-hidden="true">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <span class="blob b3"></span>
+    <canvas id="particles"></canvas>
+  </div>
+
   <div class="card">
     <h1>Message sent ✅</h1>
     <p>Thanks for reaching out. We’ll respond as soon as possible.</p>
     <a class="btn" href="/">Back to Home</a>
   </div>
+
+  <script>
+    (function(){
+      const canvas = document.getElementById("particles");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+
+      function resize(){
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = Math.floor(window.innerWidth * dpr);
+        canvas.height = Math.floor(window.innerHeight * dpr);
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+        ctx.setTransform(1,0,0,1,0,0);
+      }
+      resize();
+      window.addEventListener("resize", resize, { passive: true });
+
+      const dpr = window.devicePixelRatio || 1;
+      const count = 55;
+      const parts = Array.from({length: count}, () => ({
+        x: Math.random(),
+        y: Math.random(),
+        r: 0.7 + Math.random()*1.8,
+        vx: (-0.15 + Math.random()*0.3),
+        vy: (-0.10 + Math.random()*0.2),
+        a: 0.10 + Math.random()*0.22
+      }));
+
+      function tick(){
+        const w = canvas.width, h = canvas.height;
+        ctx.clearRect(0,0,w,h);
+        for (const p of parts){
+          p.x += p.vx / 1000;
+          p.y += p.vy / 1000;
+          if (p.x < -0.02) p.x = 1.02;
+          if (p.x > 1.02) p.x = -0.02;
+          if (p.y < -0.02) p.y = 1.02;
+          if (p.y > 1.02) p.y = -0.02;
+
+          const px = p.x * w, py = p.y * h;
+          ctx.beginPath();
+          ctx.arc(px, py, p.r * dpr, 0, Math.PI*2);
+          ctx.fillStyle = `rgba(255,255,255,${p.a})`;
+          ctx.fill();
+        }
+        requestAnimationFrame(tick);
+      }
+      tick();
+    })();
+  </script>
 </body>
 </html>
