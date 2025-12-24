@@ -8,77 +8,51 @@
 
   <style>
     :root{
-      --bg:#0b1020;
-      --border:rgba(255,255,255,.12);
-      --text:#eef2ff;
-      --muted:rgba(238,242,255,.78);
-      --muted2:rgba(238,242,255,.60);
-      --accent:#7c3aed;
-      --accent2:#2563eb;
-      --radius:18px;
-      --card:rgba(255,255,255,.04);
-      --glass:rgba(0,0,0,.22);
+      --bg:#0b1020;--border:rgba(255,255,255,.12);--text:#eef2ff;
+      --muted:rgba(238,242,255,.78);--muted2:rgba(238,242,255,.60);
+      --accent:#7c3aed;--accent2:#2563eb;--radius:18px;
+      --card:rgba(255,255,255,.04);--glass:rgba(0,0,0,.22);
     }
     *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      color:var(--text);
-      background:
-        radial-gradient(900px 450px at 20% 10%, rgba(124,58,237,.22), transparent 60%),
-        radial-gradient(900px 450px at 80% 0%, rgba(37,99,235,.18), transparent 55%),
-        linear-gradient(90deg, rgba(124,58,237,.25), rgba(37,99,235,.16)),
-        var(--bg);
-      min-height:100vh;
-    }
+    html,body{height:100%}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--text);background:var(--bg);min-height:100vh}
     a{color:inherit}
     .wrap{max-width:1100px;margin:0 auto;padding:20px}
 
+    .bg-animated{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+    .bg-animated #particles{position:absolute;inset:0;width:100%;height:100%;opacity:.55}
+    .blob{position:absolute;width:520px;height:520px;border-radius:999px;filter:blur(18px);opacity:.35;mix-blend-mode:screen;transform:translate3d(0,0,0);animation:floaty 16s ease-in-out infinite}
+    .b1{left:-120px;top:-140px;background:radial-gradient(circle at 30% 30%, rgba(124,58,237,.95), transparent 60%)}
+    .b2{right:-160px;top:-120px;background:radial-gradient(circle at 40% 40%, rgba(37,99,235,.95), transparent 60%);animation-duration:19s}
+    .b3{left:20%;bottom:-220px;background:radial-gradient(circle at 50% 40%, rgba(99,102,241,.85), transparent 62%);animation-duration:22s}
+    @keyframes floaty{0%{transform:translate3d(0,0,0) scale(1)}35%{transform:translate3d(40px,22px,0) scale(1.06)}70%{transform:translate3d(-28px,32px,0) scale(1.02)}100%{transform:translate3d(0,0,0) scale(1)}}
+
+    body::before{
+      content:"";position:fixed;inset:0;z-index:-2;
+      background:linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+               linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size:54px 54px;opacity:.10;pointer-events:none;
+    }
+
     .site-header{
       position:sticky;top:0;z-index:999;
-      display:flex;align-items:center;justify-content:space-between;
-      gap:12px;flex-wrap:wrap;
-      padding:12px 16px;
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      background:var(--glass);
-      backdrop-filter:blur(10px);
+      display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+      padding:12px 16px;border:1px solid var(--border);border-radius:var(--radius);
+      background:var(--glass);backdrop-filter:blur(10px);
     }
     .brand-link{display:flex;align-items:center;gap:10px;text-decoration:none}
-    .brand-logo{
-      width:38px;height:38px;object-fit:contain;
-      border-radius:12px;border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.05);padding:5px;
-    }
-    .brand-name{font-weight:900;letter-spacing:.2px}
+    .brand-logo{width:38px;height:38px;object-fit:contain;border-radius:12px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.05);padding:5px}
+    .brand-name{font-weight:900;letter-spacing:.2px;line-height:1.1}
     .nav{display:flex;gap:10px;flex-wrap:wrap}
-    .nav a{
-      color:var(--muted);
-      text-decoration:none;
-      padding:8px 10px;
-      border-radius:999px;
-      font-size:14px;
-      font-weight:700;
-      border:1px solid transparent;
-    }
-    .nav a:hover{color:var(--text);background:rgba(255,255,255,.06);border-color:var(--border)}
+    .nav a{color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:999px;border:1px solid transparent;font-size:14px;font-weight:700}
+    .nav a:hover{color:var(--text);border-color:var(--border);background:rgba(255,255,255,.06)}
 
     main{
-      margin-top:16px;
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      background:rgba(0,0,0,.16);
-      padding:36px 18px;
-      text-align:center;
+      margin-top:16px;border:1px solid var(--border);border-radius:var(--radius);
+      background:rgba(0,0,0,.16);padding:36px 18px;text-align:center;
     }
     h1{margin:0 0 10px;font-size:40px;letter-spacing:-.6px}
-    .subtext{
-      margin:0 auto 22px;
-      max-width:70ch;
-      color:var(--muted);
-      line-height:1.65;
-      font-size:16px;
-    }
+    .subtext{margin:0 auto 22px;max-width:70ch;color:var(--muted);line-height:1.65;font-size:16px}
 
     .contact-form{
       margin:0 auto;
@@ -91,83 +65,53 @@
       gap:14px;
       text-align:left;
     }
-    .contact-form label{
-      display:grid;
-      gap:6px;
-      font-size:14px;
-      color:var(--muted);
-      font-weight:700;
+    .contact-form label{display:grid;gap:6px;font-size:14px;color:var(--muted);font-weight:700}
+    .contact-form input,.contact-form select,.contact-form textarea{
+      width:100%;padding:11px 12px;border-radius:12px;border:1px solid var(--border);
+      background:rgba(0,0,0,.18);color:var(--text);font-weight:600;outline:none;
     }
-    .contact-form input,
-    .contact-form select,
-    .contact-form textarea{
-      width:100%;
-      padding:11px 12px;
-      border-radius:12px;
-      border:1px solid var(--border);
-      background:rgba(0,0,0,.18);
-      color:var(--text);
-      font-weight:600;
-      outline:none;
-    }
-    .contact-form input:focus,
-    .contact-form select:focus,
-    .contact-form textarea:focus{
-      border-color:rgba(124,58,237,.6);
-    }
+    .contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:rgba(124,58,237,.6)}
 
-    /* Honeypot (hidden field) */
+    /* Honeypot field */
     .hp-field{
-      position:absolute !important;
-      left:-9999px !important;
-      width:1px !important;
-      height:1px !important;
-      overflow:hidden !important;
+      position:absolute !important;left:-9999px !important;width:1px !important;height:1px !important;overflow:hidden !important;
     }
 
     .btn{
-      padding:12px 16px;
-      border-radius:14px;
-      border:none;
-      font-weight:900;
-      font-size:15px;
-      cursor:pointer;
-      color:white;
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
-      width:fit-content;
+      padding:12px 16px;border-radius:14px;border:none;font-weight:900;font-size:15px;cursor:pointer;color:white;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));width:fit-content;
     }
     .btn:hover{filter:brightness(1.08)}
 
-    .form-note{
-      margin:0;
-      color:var(--muted2);
-      font-size:13px;
-      text-align:center;
-    }
-    .form-note a{
-      color:rgba(238,242,255,.85);
-      text-decoration:underline;
-      text-decoration-color:rgba(238,242,255,.3);
-    }
+    .form-note{margin:0;color:var(--muted2);font-size:13px;text-align:center}
+    .form-note a{color:rgba(238,242,255,.85);text-decoration:underline;text-decoration-color:rgba(238,242,255,.3)}
 
     footer{
-      margin-top:22px;
-      padding-top:14px;
-      border-top:1px solid var(--border);
-      color:rgba(238,242,255,.55);
-      font-size:13px;
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      text-align:left;
+      margin-top:22px;padding-top:14px;border-top:1px solid var(--border);
+      color:rgba(238,242,255,.55);font-size:13px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;text-align:left;
+    }
+
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease, transform .7s ease;will-change:opacity,transform}
+    .reveal.in{opacity:1;transform:translateY(0)}
+
+    @media (prefers-reduced-motion: reduce){
+      .blob{animation:none}
+      .reveal{opacity:1;transform:none;transition:none}
+      .bg-animated #particles{display:none}
     }
   </style>
 </head>
 
 <body>
+  <div class="bg-animated" aria-hidden="true">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <span class="blob b3"></span>
+    <canvas id="particles"></canvas>
+  </div>
+
   <div class="wrap">
-    <header class="site-header">
+    <header class="site-header reveal">
       <a class="brand-link" href="/">
         <img src="/assets/logo.png" alt="Apex Technical Solutions Group LLC logo" class="brand-logo">
         <span class="brand-name">Apex Technical Solutions Group LLC</span>
@@ -181,18 +125,16 @@
     </header>
 
     <main>
-      <h1>Contact</h1>
-      <p class="subtext">
-        Send a quick message and we’ll reply with next steps. This form goes directly to our inbox.
-      </p>
+      <section class="reveal">
+        <h1>Contact</h1>
+        <p class="subtext">Send a quick message and we’ll reply with next steps. This form goes directly to our inbox.</p>
+      </section>
 
-      <form class="contact-form" action="https://formspree.io/f/mgowqqrj" method="POST">
-        <!-- Formspree helpers -->
+      <form class="contact-form reveal" action="https://formspree.io/f/mgowqqrj" method="POST">
         <input type="hidden" name="_subject" value="New message from apextsgroup.com" />
         <input type="hidden" name="_redirect" value="https://apextsgroup.com/contact/thanks/" />
         <input type="hidden" name="_replyto" value="%{email}" />
 
-        <!-- Honeypot field (bots fill this, humans won't) -->
         <label class="hp-field" aria-hidden="true">
           If you are human, leave this field blank
           <input type="text" name="website" tabindex="-1" autocomplete="off" />
@@ -233,13 +175,74 @@
         </p>
       </form>
 
-      <footer>
+      <footer class="reveal">
         <div>© 2025 Apex Technical Solutions Group LLC</div>
-        <div>
-          <a href="mailto:info@apextsgroup.com?subject=Project%20Inquiry">info@apextsgroup.com</a>
-        </div>
+        <div><a href="mailto:info@apextsgroup.com?subject=Project%20Inquiry">info@apextsgroup.com</a></div>
       </footer>
     </main>
   </div>
+
+  <script>
+    (function(){
+      const els = document.querySelectorAll(".reveal");
+      if (!("IntersectionObserver" in window) || els.length === 0){
+        els.forEach(el => el.classList.add("in"));
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("in"); });
+      }, { threshold: 0.15 });
+      els.forEach(el => io.observe(el));
+    })();
+
+    (function(){
+      const canvas = document.getElementById("particles");
+      if (!canvas) return;
+      const ctx = canvas.getContext("2d");
+
+      function resize(){
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = Math.floor(window.innerWidth * dpr);
+        canvas.height = Math.floor(window.innerHeight * dpr);
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
+        ctx.setTransform(1,0,0,1,0,0);
+      }
+      resize();
+      window.addEventListener("resize", resize, { passive: true });
+
+      const dpr = window.devicePixelRatio || 1;
+      const count = 70;
+      const parts = Array.from({length: count}, () => ({
+        x: Math.random(),
+        y: Math.random(),
+        r: 0.7 + Math.random()*1.8,
+        vx: (-0.15 + Math.random()*0.3),
+        vy: (-0.10 + Math.random()*0.2),
+        a: 0.12 + Math.random()*0.25
+      }));
+
+      function tick(){
+        const w = canvas.width, h = canvas.height;
+        ctx.clearRect(0,0,w,h);
+        for (const p of parts){
+          p.x += p.vx / 1000;
+          p.y += p.vy / 1000;
+          if (p.x < -0.02) p.x = 1.02;
+          if (p.x > 1.02) p.x = -0.02;
+          if (p.y < -0.02) p.y = 1.02;
+          if (p.y > 1.02) p.y = -0.02;
+
+          const px = p.x * w, py = p.y * h;
+          ctx.beginPath();
+          ctx.arc(px, py, p.r * dpr, 0, Math.PI*2);
+          ctx.fillStyle = `rgba(255,255,255,${p.a})`;
+          ctx.fill();
+        }
+        requestAnimationFrame(tick);
+      }
+      tick();
+    })();
+  </script>
 </body>
 </html>
